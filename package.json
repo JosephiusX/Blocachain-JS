@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/JosephiusX/Blocachain-JS/issues"
   },
-  "homepage": "https://github.com/JosephiusX/Blocachain-JS#readme"
+  "homepage": "https://github.com/JosephiusX/Blocachain-JS#readme",
+  "dependencies": {
+    "sha256": "^0.2.0"
+  }
 }

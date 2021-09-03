@@ -8,6 +8,7 @@ function User(firstName, lastName, age, gender) {
 var user1 = new User('John', 'Smith', 26, 'male')
 var user2 = new User('Jill', 'Robinson', 25, 'female')
 
+// the prototype is an object that can be accessed by other objects to get needed information or  functionality
 User.prototype.emailDomain = `@facebook.com` // this adds the email to __proto__
 console.log(user2.emailDomain) // the prototype value will be available on the proto of every object created by this constructor
 
