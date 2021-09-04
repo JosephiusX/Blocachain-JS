@@ -47,4 +47,23 @@ constructor function review
 
 # section 3 Accessing The Blockchain Through An API
 
-as;difj
+26.   Setting Up ExpressJS
+
+27.   Bulding The API foundation
+
+28.   Installing postman & body parser
+
+              npm i nodemon
+
+if we dont install body parser we get an error when trying to log the request body.
+
+            npm i body-parser
+
+      require and use:
+
+            const bodyParser = require('body-parser');
+
+            app.use(bodyParser.json());
+            app.use(bodyParser.urlencoded({extended: false}));
+
+28. Building The "GET /blockchain" Endpoint
