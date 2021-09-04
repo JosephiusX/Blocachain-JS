@@ -66,4 +66,10 @@ if we dont install body parser we get an error when trying to log the request bo
             app.use(bodyParser.json());
             app.use(bodyParser.urlencoded({extended: false}));
 
-28. Building The "GET /blockchain" Endpoint
+28.   Building The "GET /blockchain" Endpoint
+
+29.   building GET mine endpoint
+
+              npm i uuid
+
+creates unique random string
