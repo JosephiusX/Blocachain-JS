@@ -73,3 +73,5 @@ if we dont install body parser we get an error when trying to log the request bo
               npm i uuid
 
 creates unique random string
+
+32. Testing the new endpoints
