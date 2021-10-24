@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const Blockchain = require('./blockchain');
 const uuid = require('uuid').v1;
-// import {v1 as uuidv1} from 'uuid';
+const port = process.argv[2]; // access port variable inside of our network node, 2 represents the argument position 0 indexed, so position 3
 
 const nodeAddress = uuid().split('-').join(''); // making node address
 
@@ -40,6 +40,6 @@ app.get('/mine', (req, res) => {
 	});
 });
 
-app.listen(3000, () => {
-	console.log('listening on port 3000');
+app.listen(port, () => {
+	console.log(`listening on ${port}...`);
 });

@@ -75,3 +75,29 @@ if we dont install body parser we get an error when trying to log the request bo
 creates unique random string
 
 32. Testing the new endpoints
+
+# sec 4 Creating decentralized Blockchain Network
+
+33.   Decemtralized Blockchain Network - Introduction
+
+34.   Creating Muliple Nodes
+
+              change api.js filename to networkNode.js
+
+              create a port variable instead of hard coded to 3001
+                  setup arg v and change the start command to the new file name and add a port to the start command
+
+                  add 3001 to the third element in the start script
+
+npm start should result in listeneig on port 3001
+
+set up for multiple instances
+
+      change start in package.json to node_1
+
+now I can run 'npm run node_1' to run my first node
+
+      in scripts I make 4 more node commands 2 3 4 and 5
+            we can test by opening all nodes at same time in their own terminals
+
+we created 5 different instances of our networkNode file, and are running them concurently
