@@ -101,3 +101,9 @@ now I can run 'npm run node_1' to run my first node
             we can test by opening all nodes at same time in their own terminals
 
 we created 5 different instances of our networkNode file, and are running them concurently
+
+35. Testing The Nodes
+
+right now we dont have a network, just 5 unconnected nodes. lets test that they are not connected by adding transactions via postman to different nodes.
+
+we can see that information we update on one node is not updated to any of the other nodes at this point.
