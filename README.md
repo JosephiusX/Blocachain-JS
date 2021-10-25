@@ -123,4 +123,8 @@ now also we want the other nodes inside of our network
                   this.networkNodes = [];
                         an array that will contain all the other node url's in our network.js in our network, so that all nodes will have a list of all other nodes in the blockchain.
 
-37. New Endpoints Outline
+37.   New Endpoints Outline
+
+38.   Building "POST/register-and-broadcast-node" Endpoint - Part 1
+
+              -left off at 4:37
