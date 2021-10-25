@@ -107,3 +107,18 @@ we created 5 different instances of our networkNode file, and are running them c
 right now we dont have a network, just 5 unconnected nodes. lets test that they are not connected by adding transactions via postman to different nodes.
 
 we can see that information we update on one node is not updated to any of the other nodes at this point.
+
+36. Adding The Current Node's Url
+
+we want each of our network nodes to be aware of what url they are currently on. to do this we need to alter the script commands.
+
+      - in the third paramiter of each command we are going to add the node's url
+
+      - in blockchain.js we add currentNetworkUrl variable to = process.argv[3]
+            -add it to the blockchain function.
+
+now also we want the other nodes inside of our network
+
+            -in Blockchain():
+                  this.networkNodes = [];
+                        an array that will contain all the other node url's in our network.js in our network, so that all nodes will have a list of all other nodes in the blockchain.
