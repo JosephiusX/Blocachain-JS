@@ -122,3 +122,5 @@ now also we want the other nodes inside of our network
             -in Blockchain():
                   this.networkNodes = [];
                         an array that will contain all the other node url's in our network.js in our network, so that all nodes will have a list of all other nodes in the blockchain.
+
+37. New Endpoints Outline
