@@ -134,3 +134,12 @@ we are cycling through all of the nodes that are in our network, then we are usi
 39.   Building "POST/register-and-broadcast-node" Endpoint - Part 2
 
 40.   Building 'POST /register-node' Endpoint
+
+41.   UPDATE: Installing the "request" library
+
+                  -inside blockchain directory:
+                        npm install request --save
+
+      not sure why this information is gone over again as it would seem to be the same command we used to install the package in lesson 38.
+
+42.   Testing "POST/register-node" Endpoint
