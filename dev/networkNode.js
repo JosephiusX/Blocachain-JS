@@ -83,7 +83,7 @@ app.post('/register-node', function (req, res) {
 });
 
 // register multiple nodes at once
-app.post('/register-notes-bulk', function (req, res) {
+app.post('/register-nodes-bulk', function (req, res) {
 	const allNetworkNodes = req.body.allNetworkNodes;
 	allNetworkNodes.forEach(networkNodeUrl => {
 		const nodeNotAlreadyPresent = bitcoin.networkNodes.indexOf(networkNodeUrl) == -1;

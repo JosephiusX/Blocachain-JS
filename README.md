@@ -145,3 +145,14 @@ we are cycling through all of the nodes that are in our network, then we are usi
 42.   Testing "POST/register-node" Endpoint
 
 43.   Building "POST /register-nodes-bulk" Endpoint
+
+the distributed blockchain network is setup now
+
+44.   Testing "POST /register-nodes-bulk" Endpoint
+
+              -In postman I am able to register localhost3002, 3003, 3004, to localhost 3001 using this url and including urls to register in the body:
+                    http://localhost:3001/blockchain
+
+              -we do the same by registering 3002 and 3004 to localhost:3005
+
+Route works!
