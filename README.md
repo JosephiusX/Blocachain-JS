@@ -132,3 +132,5 @@ now also we want the other nodes inside of our network
 we are cycling through all of the nodes that are in our network, then we are using requestOptions to make a request to each one. Thease request that are made are going to register the new node with each node in the network. All the requests are asynchronous meaning we dont know how long its going to take to calculate this data because we are requesting from an outside source (another node). thus we will place all the requests into regNodesPromises array.
 
 39.   Building "POST/register-and-broadcast-node" Endpoint - Part 2
+
+40.   Building 'POST /register-node' Endpoint
