@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const Blockchain = require('./blockchain');
 const uuid = require('uuid').v1;
 const port = process.argv[2]; // access port variable inside of our network node, 2 represents the argument position 0 indexed, so position 3
+const rp = require('request-promise')
 
 const nodeAddress = uuid().split('-').join(''); // making node address
 
@@ -44,9 +45,23 @@ app.get('/mine', (req, res) => {
 app.post('/register-and-broadcast-node', function (req, res) {
 	const newNodeUrl = req.body.newNodeUrl;
 	if (bitcoin.networkNodes.indexOf(newNodeUrl) = -1) bitcoin.networkNodes.push(newNodeUrl);
+
+	const regNodesPromises = [];
 	bitcoin.networkNodes.forEach(networkNodeUrl => {
-		// '/register-node'
-	})
+		const requestOptions = {
+			uri:networkNodeUrl + 'register-node',
+			method: 'POST',
+			body: { newNodeUrl: newNodeUrl },
+			json: true 
+		};
+
+		regNodesPromises.push(rp(requestOptions))
+	});
+	Promise.all(regNodesPromises)
+	.then(data => {
+		// ...
+		// use the data....
+	});
 });
 
 // register a node with the network
