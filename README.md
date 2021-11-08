@@ -143,3 +143,5 @@ we are cycling through all of the nodes that are in our network, then we are usi
       not sure why this information is gone over again as it would seem to be the same command we used to install the package in lesson 38.
 
 42.   Testing "POST/register-node" Endpoint
+
+43.   Building "POST /register-nodes-bulk" Endpoint
