@@ -1,5 +1,7 @@
 # Blocachain-JS
 
+Sourcecode: https://github.com/erictraub/Learn-Blockchain-By-Building-Your-Own-In-JavaScript
+
 constructor function review
 
 10.   Blockchain constructor function
@@ -156,3 +158,21 @@ the distributed blockchain network is setup now
               -we do the same by registering 3002 and 3004 to localhost:3005
 
 Route works!
+
+45.   Testing All Network Endpoints
+
+              -in postman make POST request:
+                   http://localhost:3001/register-and-broadcast-node
+
+                  -body:
+                        {
+                        "newNodeUrl" : "http://localhost:3002"
+                        }
+
+had to add catch to all my then statements to handle promise rejections:
+
+            .catch(error => {
+                              console.error('/register-and-broadcast-node Promise error ' + error);
+                            })
+
+            ** still its saying new node registered with network successfully, I can see node 3002 in node 3001 but not vise versa, and i get an error in the node window for 3001
