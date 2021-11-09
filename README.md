@@ -178,3 +178,5 @@ had to add catch to all my then statements to handle promise rejections:
             ?? still its saying new node registered with network successfully, I can see node 3002 in node 3001 but not vise versa, and i get an error in the node window for 3001
 
             ** works when I copy request from source. Cant find the difference
+
+qtf
