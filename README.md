@@ -179,4 +179,8 @@ had to add catch to all my then statements to handle promise rejections:
 
             ** works when I copy request from source. Cant find the difference
 
-qtf
+## Sec 5
+
+46. Synchronizing The Network
+
+we need to sync the network so that the blockchain on every node is the same, we need one version of the blockchain to be consistant on every node.
