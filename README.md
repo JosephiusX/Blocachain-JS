@@ -200,4 +200,16 @@ we are going to split our createNewTransaction into seporate methods creating ad
 
 we create a new transaction and we broadcast it to all other nodes in our network
 
-50. Refactoring "POST /transaction" Endpoint
+50.   Refactoring "POST /transaction" Endpoint
+
+51.   Testing Transaction Endpoints
+
+            -testing
+                  -in postman i use the register-and-broadcast-node, and in the body register it to each other node individually.
+
+now when I broadcast a transaction it is uptdated to the network
+
+              ?? adding transaction to a node but it is not updated on the other nodes
+              ** I hadent regestered all the nodes yet
+
+
