@@ -219,3 +219,5 @@ when we mine a new block we are going to choose a node to '/mine' it, we hit the
 when we create a new block, all of the pending transactions go into that block, and our pending transaction array is cleared
 
 53. Updating Mining Endpoint
+
+54. Building 'POST /recieve-new-block' Endpoint
