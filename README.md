@@ -184,3 +184,12 @@ had to add catch to all my then statements to handle promise rejections:
 46. Synchronizing The Network
 
 we need to sync the network so that the blockchain on every node is the same, we need one version of the blockchain to be consistant on every node.
+
+47. Transactions Introduction
+
+we are going to refactor our transaction endpoint, and also creating a new transaction endpoint that will allow us to broadcast changes to our entire blockchain network so that every node ends up with the same data.
+
+      /transaction/broadcast
+            we are going to send it transaction data
+
+48. Refactoring Create Transaction Method
