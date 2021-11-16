@@ -197,3 +197,5 @@ we are going to refactor our transaction endpoint, and also creating a new trans
 we are going to split our createNewTransaction into seporate methods creating addTransactionToPendingTransactions method
 
 49. Building 'POST /transaction/broadcast' Endpoint
+
+we create a new transaction and we broadcast it to all other nodes in our network
