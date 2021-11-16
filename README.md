@@ -199,3 +199,5 @@ we are going to split our createNewTransaction into seporate methods creating ad
 49. Building 'POST /transaction/broadcast' Endpoint
 
 we create a new transaction and we broadcast it to all other nodes in our network
+
+50. Refactoring "POST /transaction" Endpoint
