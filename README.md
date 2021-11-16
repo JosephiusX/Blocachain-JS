@@ -193,3 +193,7 @@ we are going to refactor our transaction endpoint, and also creating a new trans
             we are going to send it transaction data
 
 48. Refactoring Create Transaction Method
+
+we are going to split our createNewTransaction into seporate methods creating addTransactionToPendingTransactions method
+
+49. Building 'POST /transaction/broadcast' Endpoint
