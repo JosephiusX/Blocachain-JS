@@ -212,4 +212,8 @@ now when I broadcast a transaction it is uptdated to the network
               ?? adding transaction to a node but it is not updated on the other nodes
               ** I hadent regestered all the nodes yet
 
+52. Updating Mining Information
 
+when we mine a new block we are going to choose a node to '/mine' it, we hit the mine endpoint on that node and it creates a new block and sends it out to the other nodes in the network via their '/recieve-new-block' endpoints
+
+when we create a new block, all of the pending transactions go into that block, and our pending transaction array is cleared
