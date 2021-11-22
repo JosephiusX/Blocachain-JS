@@ -405,3 +405,13 @@ we created diffrent transactions from different nodes and they were all broadcas
 A decentralized blockchain network thats currently running on 5 nodes and synchronises data.
 
 this is a great time to play around with all the endpoints to get a feel
+
+56. Consensus Introduction
+
+we are going to build a algorithim for the nodes in our network to agree on what the correct data on the blockchain is. in a real world situation with thousands of nodes, we need a way of protecting the network from corrupted data weather accidental or malicious
+
+longest chain rule - takes a look at a single node and looks at the copy of the blockchain on the node and compares the length of the chane on this node with the blockchains on all the other nodes. If there is a chain found that has a longer length than the chain that is present on this node, we are going to replace the chain on this node with the longest chain in the network.
+
+the theory is that we should be able to trust the longest chain as the most work was put into creating that chain. the longes chain has the most blocks and each block was mined with a proof of work, so we can assume that the whole network contributed to the chain because of the amount of work that went into that chain.
+
+Bitcoin uses this rule
