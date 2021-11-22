@@ -48,7 +48,7 @@ app.post('/transaction/broadcast', function (req, res) {
 });
 
 // mine a block
-app.get('/mine', (req, res) => {
+app.get('/mine', function (req, res) {
 	const lastBlock = bitcoin.getLastBlock();
 	const previousBlockHash = lastBlock['hash'];
 	const currentBlockData = {
@@ -68,7 +68,7 @@ app.get('/mine', (req, res) => {
 			json: true,
 		};
 
-		requestPromises(rp(requestOptions)); // creates a promise
+		requestPromises.push(rp(requestOptions)); // creates a promise
 	});
 
 	Promise.all(requestPromises)

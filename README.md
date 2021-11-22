@@ -157,6 +157,20 @@ the distributed blockchain network is setup now
 
               -we do the same by registering 3002 and 3004 to localhost:3005
 
+              EXAMPLE:
+                  in postman if I make a post to 'http://localhost:3001/register-nodes-bulk' with this as the body:
+                        {
+                              "allNetworkNodes" : [
+                                    "http://localhost:3002",
+                                    "http://localhost:3003",
+                                    "http://localhost:3004",
+                                    "http://localhost:3005"
+                              ]
+                        }
+                  the result is that all the other nodes will be visible in the 'networkNodes' array as they have been registered to that node in the endpoint
+
+to connect all the nodes we run post on rach node with the other nodes sent in the body.
+
 Route works!
 
 45.   Testing All Network Endpoints
@@ -218,6 +232,176 @@ when we mine a new block we are going to choose a node to '/mine' it, we hit the
 
 when we create a new block, all of the pending transactions go into that block, and our pending transaction array is cleared
 
-53. Updating Mining Endpoint
+53.   Updating Mining Endpoint
 
-54. Building 'POST /recieve-new-block' Endpoint
+54.   Building 'POST /recieve-new-block' Endpoint
+
+55.   Testing New Endpoints
+
+              -make sure each node is individually registered to every other node via the 'http://localhost:3005/register-nodes-bulk' endpoint using Postman
+
+              - go to localhost:3001/mine while localhost:3001/blockchain is running and I should see something like this:
+                  {
+                        "note": "New block mined & broadcast successfully",
+                        "block": {
+                                    "index": 2,
+                                    "timestamp": 1637559318836,
+                                    "transactions": [],
+                                    "nonce": 18140,
+                                    "hash": "0000b9135b054d1131392c9eb9d03b0111d4b516824a03c35639e12858912100",
+                                    "previousBlockHash": "0"
+                                 }
+                  }
+
+            - take a look at the node to see the transaction made above is added to the chain on 'http://localhost:3001/blockchain' like so:
+                        {
+                           "chain": [
+                                    {
+                                          "index": 1,
+                                          "timestamp": 1637559214940,
+                                          "transactions": [],
+                                          "nonce": 100,
+                                          "hash": "0",
+                                          "previousBlockHash": "0"
+                                    },
+                                    {
+                                          "index": 2,
+                                          "timestamp": 1637559318836,
+                                          "transactions": [],
+                                          "nonce": 18140,
+                                          "hash": "0000b9135b054d1131392c9eb9d03b0111d4b516824a03c35639e12858912100",
+                                          "previousBlockHash": "0"
+                                    }
+                                    ],
+                                          "pendingTransactions": [
+                                    {
+                                          "amount": 12.5,
+                                          "sender": "00",
+                                          "transactionId": "fa8164904b5511ecbca88391d7d361e8"
+                                    }
+                                    ],
+                                    "currentNodeUrl": "http://localhost:3001",
+                                    "networkNodes": [
+                                                      "http://localhost:3002",
+                                                      "http://localhost:3003",
+                                                      "http://localhost:3004",
+                                                      "http://localhost:3005"
+                                                    ]
+                        }
+
+as we can see above, the ammount that was earned by the mine is included in the pending transaction to be added to the next block which is how it works with bitcoin. (best practice opposed to putting it in the block it was mined for)
+
+we can see that our block is mined successfully and our first node and the reward was posted to pending transactions. now we want to check the other nodes in our network and check that they got the block that was genereted as well as the mining reward that was generated
+
+            http://localhost:3002/blockchain:
+                  {
+                  "chain": [
+                              {
+                                    "index": 1,
+                                    "timestamp": 1637557654585,
+                                    "transactions": [],
+                                    "nonce": 100,
+                                    "hash": "0",
+                                    "previousBlockHash": "0"
+                              },
+                              {
+                                    "index": 2,
+                                    "timestamp": 1637559318836,
+                                    "transactions": [],
+                                    "nonce": 18140,
+                                    "hash": "0000b9135b054d1131392c9eb9d03b0111d4b516824a03c35639e12858912100",
+                                    "previousBlockHash": "0"
+                              }
+                              ],
+                              "pendingTransactions": [
+                                   {
+                                    "amount": 12.5,
+                                    "sender": "00",
+                                    "transactionId": "fa8164904b5511ecbca88391d7d361e8"
+                                   }
+                              ],
+                              "currentNodeUrl": "http://localhost:3002",
+                              "networkNodes":   [
+                                                      "http://localhost:3001",
+                                                      "http://localhost:3003",
+                                                      "http://localhost:3004",
+                                                      "http://localhost:3005"
+                                                ]
+                  }
+
+the block we mined with 'http://localhost:3001/mine' is automatically visible on 'localhost:3002/blockchain' as well as '3001/blockchain' , along with the other registered nodes!!
+
+next, if we want to mine a new block, that can be done using any other node and it should be broadcast to nodes on network as well.
+
+      - in the browser mine a block by using the 'localhost:3004/mine' url
+
+the result is that the new block that was mined is visible on the other blocks because it was broadcast to all the other nodes from 3004(really imporntaint)
+
+using postman lets make some transactions and then mine a block to see if we can find the transactions on other nodes in the network
+
+      - using the /transaction/broadcast POST endpoint:
+            http://localhost:3001/transaction/broadcast
+      - with this in the body for transaction data:
+                  {
+                        "amount": 100,
+                        "sender": "bob then man",
+                        "recipient": "gramkracker"
+                  }
+                        response:
+                              {
+                              "note": "Transaction created and broadcast successfully"
+                              }
+
+lets make a couple more transactions before mineing a block.
+
+            - ammount 200 to our 5th node this time
+            - 300 to node 1
+
+now when I refresh each of the nodes I see those pending transactions in each node in the network. all of our transactions are being broadcast to the entire network correctly.
+
+now we want to mine a new block to make sure that all of the pending transactions are added to the block correctly.
+
+      localhost:3003/mine:
+            response:
+                  {
+                        {
+                        "note": "New block mined & broadcast successfully",
+                        "block": {
+                        "index": 4,
+                        "timestamp": 1637573566434,
+                        "transactions": [
+                        {
+                        "amount": 12.5,
+                        "sender": "00",
+                        "transactionId": "4fc6e5c04b7311eca73ccf8bf27c2512"
+                        },
+                        {
+                        "amount": 100,
+                        "sender": "bob then man",
+                        "transactionId": "5d60bb004b7511ecbca88391d7d361e8"
+                        },
+                        {
+                        "amount": 200,
+                        "sender": "bob then man",
+                        "transactionId": "f5e364e04b7511ec85a613eb5079d528"
+                        },
+                        {
+                        "amount": 300,
+                        "sender": "bob then man",
+                        "transactionId": "0919c2704b7611ecbca88391d7d361e8"
+                        }
+                        ],
+                        "nonce": 13437,
+                        "hash": "0000db54423eb6c8d4609a7b3a8c925736a17cf8b62b906cf2ba78971ac1131b",
+                        "previousBlockHash": "0000ee63a8183a7add894160c380d94f4974113bb28eef744f32d79810988f77"
+                        }
+                        }
+                  }
+
+I can see the block 4 was mined successfully, and when I refresh other network nodes that block shows up on the chain !!!!! The pending tranctions were cleared out and the reward is placed in the pending transactions.
+
+we created diffrent transactions from different nodes and they were all broadcast to the network correctly. then we mined a new block and all the transactions we created were added to that new block successfully, and our newly mined block was broadcast to the node. Synchronization of data among nodes achieved!!
+
+A decentralized blockchain network thats currently running on 5 nodes and synchronises data.
+
+this is a great time to play around with all the endpoints to get a feel
