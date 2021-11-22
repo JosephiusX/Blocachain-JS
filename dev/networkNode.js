@@ -62,7 +62,7 @@ app.get('/mine', (req, res) => {
 	const requestPromises = [];
 	bitcoin.networkNodes.forEach(networkNodeUrl => {
 		const requestOptions = {
-			uri: networkNodeUrl + '/recieve-new-block',
+			uri: networkNodeUrl + '/receive-new-block',
 			method: 'POST',
 			body: {newBlock: newBlock},
 			json: true,
@@ -92,6 +92,31 @@ app.get('/mine', (req, res) => {
 				block: newBlock, // and block
 			});
 		});
+});
+
+app.post('/receive-new-block', function (req, res) {
+	const newBlock = req.body.newBlock; // getting new block from a broadcast
+	const lastBlock = bitcoin.getLastBlock();
+	const correctHash = lastBlock.hash === newBlock.previousBlockHash; // check to see if the hashes are correct
+	const correctIndex = lastBlock['index'] + 1 === newBlock['index']; // check to make sure it has the correct index
+
+	// if theyre both correct
+	if (correctHash && correctIndex) {
+		bitcoin.chain.push(newBlock); // add to the new chain
+		bitcoin.pendingTransactions = []; // clear the pending transactions
+		// send a response
+		res.json({
+			note: 'New block received and accepted.',
+			newBlock: newBlock,
+		});
+		// if correctHash and correctInex are false
+	} else {
+		// send rejection response
+		res.json({
+			note: 'New block rejected.',
+			newBlock: newBlock,
+		});
+	}
 });
 
 // register a node and broadcast it the network
