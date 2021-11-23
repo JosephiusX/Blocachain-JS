@@ -73,7 +73,7 @@ Blockchain.prototype.chainIsValid = function (blockchain) {
 		const currentBlock = blockchain[i]; // index of every block
 		const prevBlock = blockchain[i - 1]; // index of the previous block
 		const blockHash = this.hashBlock(
-			previousBlock['hash'],
+			prevBlock['hash'],
 			{
 				transactions: currentBlock['transactions'],
 				index: currentBlock['index'],
@@ -87,7 +87,7 @@ Blockchain.prototype.chainIsValid = function (blockchain) {
 	}
 
 	const genesisBlock = blockchain[0];
-	const correctNonce = genisisBlock['nonce'] === 100;
+	const correctNonce = genesisBlock['nonce'] === 100;
 	const correctPreviousBlockHash = genesisBlock['previousBlockHash'] === '0';
 	const correctHash = genesisBlock['hash'] === '0';
 	const correctTransactions = genesisBlock['transactions'].length === 0;

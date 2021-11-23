@@ -419,3 +419,49 @@ Bitcoin uses this rule
 57. Chain Is Valid Method
 
 we are iterating through every single block inside the blockchain thats passed in, and compairing the hashes on every single block to make sure they are correct, if they are not correct we indicate that the chain is not valid. we are also checking to make sure that every block has the correct data by rehashing every single block and making sure our newly generated hash starts with 0000. If it dosent then we know the data has been changed because our hash is now different, so we indicate that the chain is not valid. finally we check to make sure our genesisBlock has all the correct data.
+
+58.   Testing Chain Is Valid Method
+
+                    - open node_1
+                    - mine on 3001
+                        result with localhost:3001 :
+
+      on localhost:3001 2 blocks are present with a reward in the pending transactions.
+
+                  - in postman add some transactions using /transaction/broadcast to node_1
+
+                        10
+                        20
+                        30
+
+                  - mine a new
+
+      now block 3 has those transactions we just made with a reward in the pending transactions
+
+                  - lets do more
+
+                        40
+                        50
+                        60
+                        70
+
+                  -mine
+
+      all of the transactions are now on block 4 with the reward pending as usual
+
+                  - mine 2 more blocks without any transactions
+
+      now we have a blockchain with 6 blocks with about 10 transactions,
+
+                  - copy the blockchain and paste it into test.js
+
+                  - save whole object into variable bc1
+
+                  - in test.js add :
+                        console.log('VALID:', bitcoin.chainIsValid(bc1.chain))
+
+                  - run node dev/test.jsw terminal
+                        result:
+                              VALID: true
+
+left off at 5:48
