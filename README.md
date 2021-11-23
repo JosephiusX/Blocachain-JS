@@ -415,3 +415,7 @@ longest chain rule - takes a look at a single node and looks at the copy of the 
 the theory is that we should be able to trust the longest chain as the most work was put into creating that chain. the longes chain has the most blocks and each block was mined with a proof of work, so we can assume that the whole network contributed to the chain because of the amount of work that went into that chain.
 
 Bitcoin uses this rule
+
+57. Chain Is Valid Method
+
+we are iterating through every single block inside the blockchain thats passed in, and compairing the hashes on every single block to make sure they are correct, if they are not correct we indicate that the chain is not valid. we are also checking to make sure that every block has the correct data by rehashing every single block and making sure our newly generated hash starts with 0000. If it dosent then we know the data has been changed because our hash is now different, so we indicate that the chain is not valid. finally we check to make sure our genesisBlock has all the correct data.
